@@ -11,4 +11,5 @@ wait_for_db() {
 wait_for_db
 
 cd /src
+npm install
 npm test
