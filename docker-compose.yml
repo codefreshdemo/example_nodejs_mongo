@@ -1,0 +1,10 @@
+web:
+  build: .
+  links:
+    - mongo
+  ports:
+    - "9000"
+    - "8081"
+mongo:
+  image: mongo
+
