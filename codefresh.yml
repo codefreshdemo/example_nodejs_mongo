@@ -1,0 +1,22 @@
+version: '1.0'
+steps:
+  build_step:
+    type: build
+    image_name: codefreshio/example_nodejs_mongo
+    dockerfile: Dockerfile
+    tag: ${{CF_BRANCH}}
+
+  unit_test:
+    type: composition
+    working_directory: ${{main_clone}}
+    composition:
+      version: '2'
+      services:
+        mongo:
+          image: mongo
+    composition_candidates:
+        test:
+          image: ${{build_step}}
+          links:
+            - mongo
+          command: test-script.sh
