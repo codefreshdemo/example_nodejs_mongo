@@ -10,4 +10,5 @@ wait_for_db() {
 
 wait_for_db
 
+cd /src
 npm test
