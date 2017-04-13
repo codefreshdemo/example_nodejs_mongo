@@ -11,7 +11,7 @@ RUN apt-get install -y dnsutils
 
 #RUN ln -s "$(which nodejs)" /usr/bin/node
 
-RUN npm install -g bower grunt-cli gulp
+RUN npm install -g bower grunt-cli gulp mocha
 
 # copy app and install deps
 COPY . /src
