@@ -10,6 +10,8 @@ RUN npm install -g npm bower grunt-cli gulp
 COPY . /src
 RUN cd /src; npm install
 
+RUN chmod +x /src/test-script.sh
+
 EXPOSE 9000
 CMD [ "node", "/src/app.js" ]
 
