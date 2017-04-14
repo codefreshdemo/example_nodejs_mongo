@@ -8,15 +8,15 @@ steps:
 
   unit_test:
     type: composition
-    working_directory: ${{main_clone}}
+    working_directory: ${{build_step}}
     composition:
       version: '2'
       services:
         mongo:
           image: mongo
     composition_candidates:
-        test:
-          image: ${{build_step}}
-          links:
-            - mongo
-          command: bash -c "ls -l /src && /src/test-script.sh"
+      test:
+        image: ${{build_step}}
+        links:
+          - mongo
+        command: bash -c "ls -l /src && /src/test-script.sh"

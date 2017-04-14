@@ -11,5 +11,6 @@ wait_for_db() {
 wait_for_db
 
 cd /src
-npm install
+#npm install
+#npm install -g mocha
 npm test
