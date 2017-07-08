@@ -7,7 +7,7 @@
     "start": "node ./server.js",
     "debug": "DEBUG=demo:* node ./server.js",
     "nodemon": "DEBUG=demo:* nodemon ./server.js",
-    "test": "mocha"
+    "test": "node test/init.js"
   },
   "repository": {
     "type": "git",
