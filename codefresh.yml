@@ -9,7 +9,7 @@ steps:
     description: "Cloning main repository..."
     repo: "codefreshdemo/example_nodejs_mongo"
     revision: "master"
-    git: github-1
+    git: github
     stage: prepare
   build_app_image:
     title: "Building Docker Image"

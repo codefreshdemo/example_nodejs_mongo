@@ -1,4 +1,4 @@
-# Redis Integration tests example
+# MongoDB/Mocha Integration tests example
 
 This is an example NodeJs application that uses Mongo as a backend database.
 It is compiled using Codefresh.
