@@ -1,24 +1,44 @@
-version: '1.0'
+version: "1.0"
+stages:
+  - prepare
+  - build
+  - test
 steps:
-  build_step:
-    type: build
-    image_name: codefreshio/example_nodejs_mongo
-    dockerfile: Dockerfile
-    tag: ${{CF_BRANCH}}
-
-  unit_test:
-    type: composition
-    working_directory: ${{build_step}}
-    composition:
-      version: '2'
-      services:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "codefreshdemo/example_nodejs_mongo"
+    revision: "master"
+    git: github-1
+    stage: prepare
+  build_app_image:
+    title: "Building Docker Image"
+    type: "build"
+    image_name: "node-mongo-app"
+    tag: "master"
+    dockerfile: "Dockerfile"
+    stage: build
+  run_integration_tests:
+    title: "Running integration tests"
+    stage: test
+    image: '${{build_app_image}}'
+    environment:
+      - MONGO_PORT=27017    
+    commands:
+      # MongoDB is certainly up at this point
+        - cd /src
+        - npm test
+    services:
+      composition:
         mongo:
-          image: mongo
-    composition_candidates:
-      test:
-        image: ${{build_step}}
-        links:
-          - mongo
-        command: bash -c "/src/test-script.sh"
-        environment:
-          - MONGO_PORT=27017
+          image: mongo:latest
+          ports:
+            - 27017             
+      readiness:
+        timeoutSeconds: 30
+        periodSeconds: 15
+        image: '${{build_app_image}}'
+        commands:
+          - "nslookup mongo"   
+          - "nc -z mongo 27017"
+

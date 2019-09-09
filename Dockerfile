@@ -11,10 +11,9 @@ RUN npm install -g bower grunt-cli gulp mocha
 COPY . /src
 RUN cd /src && npm install
 
-RUN chmod +x /src/test-script.sh
-
 EXPOSE 9000
 
 ENV MONGO_PORT 27017
+
 CMD [ "node", "/src/server.js" ]
 
