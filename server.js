@@ -1,7 +1,7 @@
 var app = require('./app'),
     debug = require('debug')('demo:server'),
     util = require('util'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 9000;
     MongoClient = require('mongodb').MongoClient,
     mongoUrl = util.format('mongodb://mongo:%s/demo', process.env.MONGO_PORT);
 
