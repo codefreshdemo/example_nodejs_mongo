@@ -9,12 +9,12 @@ RUN npm install -g bower grunt-cli gulp mocha
 
 # copy app and install deps
 COPY . /src
-RUN cd /src;
-RUN npm install
+RUN cd /src && npm install
 
 RUN chmod +x /src/test-script.sh
 
 EXPOSE 9000
 
-CMD [ "node", "/src/app.js" ]
+ENV MONGO_PORT 27017
+CMD [ "node", "/src/server.js" ]
 
